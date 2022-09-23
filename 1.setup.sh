@@ -70,6 +70,9 @@ idem "command -v chromium" "sudo apt-get install chromium-browser"
 
 ################
 ## Get Source
+echo "You are about to be challenged for GitHub's fingerprint.  Please copy the Ed25519 vakye from the page about to openned in your browser"
+xdg-open https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints &
+
 idem_dir $SRC_DIR
 pushd $SRC_DIR
     idem_git onboarding
