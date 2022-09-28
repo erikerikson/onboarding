@@ -1,0 +1,28 @@
+root: true
+extends: airbnb
+rules:
+  # Note: this is to prevent compile errors for Node < 8.x. When Node 6 is
+  #   deprecated, this comma-dangle rule exception can be removed.
+  comma-dangle:
+    - error
+    - arrays: always-multiline
+      objects: always-multiline
+      imports: ignore
+      exports: ignore
+      functions: never
+  function-paren-newline: off
+  max-len: off
+  no-console: off
+  no-else-return: off
+  no-plusplus:
+    - error
+    - allowForLoopAfterthoughts: true
+  no-unexpected-multiline: error
+  semi:
+    - error
+    - never
+plugins:
+  - import
+env:
+  es6: true
+  node: true
