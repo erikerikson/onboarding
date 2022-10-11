@@ -66,11 +66,18 @@ function init_nvm() {
 idem_cmd nvm
 
 idem "command -v code" "sudo snap install --classic code"
+
 idem "command -v chromium" "sudo apt-get install chromium-browser"
+
+function init_chrome() {
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  sudo apt install ./google-chrome-stable_current_amd64.deb
+}
+idem_cmd chrome
 
 ################
 ## Get Source
-echo "You are about to be challenged for GitHub's fingerprint.  Please copy the Ed25519 vakye from the page about to openned in your browser"
+echo "You are about to be challenged for GitHub's fingerprint.  Please copy the Ed25519 key from the page about to openned in your browser"
 xdg-open https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints &
 
 idem_dir $SRC_DIR
