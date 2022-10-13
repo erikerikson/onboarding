@@ -80,6 +80,8 @@ function init_nvm() {
 }
 idem_cmd nvm
 
+idem "command -v serverless" "npm i -g serverless"
+
 idem "command -v code" "sudo snap install --classic code"
 
 idem "command -v chromium" "sudo apt-get install chromium-browser"
