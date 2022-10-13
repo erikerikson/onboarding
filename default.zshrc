@@ -11,3 +11,6 @@ compinit
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+# Common environment variables
+AWS_DEFAULT_PROFILE=sand

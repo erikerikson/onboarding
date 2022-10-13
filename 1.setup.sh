@@ -39,6 +39,8 @@ function idem_git() { idem "ls $1" "git clone git@github.com:$SRC_ORG/$1.git" }
 
 #########################################
 ## Install and configure important tools
+sudo apt update
+
 function init_zsh() {
     sudo apt install zsh
     chsh -s $(which zsh)
@@ -54,6 +56,19 @@ function init_git() {
     git config --global user.email "$EMAIL"
 }
 idem_cmd git
+
+idem "command -v curl" "sudo apt install curl"
+
+function init_aws () {
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  unzip awscliv2.zip
+  sudo ./aws/install
+  echo "This script will start the SSO flow for AWS, opening a browser."
+  echo "Please select your default role for the `sand` account."
+  echo "This will be your default AWS credential."
+  aws configure sso --profile sand
+}
+idem_cmd aws
 
 function init_nvm() {
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh || bash
