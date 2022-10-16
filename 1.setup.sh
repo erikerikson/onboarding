@@ -9,7 +9,7 @@ set -euo pipefail
 
 # Default Variable Values and Reporting
 if [ -z ${SRC_DIR+x} ]; then
-    SRC_DIR=~/src
+    SRC_DIR=/src
 fi
 if [ -z ${SRC_ORG+x} ]; then
     SRC_ORG=erikerikson
@@ -34,8 +34,12 @@ function idem() { # $1 must be side effect free && $2 must be a command (perhaps
     ($1 &> /dev/null) || ($2)
 }
 function idem_cmd() { idem "command -v $1" "init_$1"; }
-function idem_dir() { idem "ls $SRC_DIR" "mkdir $SRC_DIR"; }
-function idem_git() { idem "ls $1" "git clone git@github.com:$SRC_ORG/$1.git" }
+function init_dir() {
+    sudo -s mkdir $1;
+    sudo -s chown \$SUDO_UID:\$SUDO_GID $1;
+}
+function idem_dir() { idem "ls $1" "init_dir $1"; }
+function idem_git() { idem "ls $1" "git clone git@github.com:$SRC_ORG/$1.git"; }
 
 #########################################
 ## Install and configure important tools
@@ -65,7 +69,6 @@ function init_aws () {
   sudo ./aws/install
   echo "This script will start the SSO flow for AWS, opening a browser."
   echo "Please select your default role for the `sand` account."
-  echo "This will be your default AWS credential."
   aws configure sso --profile sand
 }
 idem_cmd aws
@@ -99,8 +102,9 @@ xdg-open https://docs.github.com/en/authentication/keeping-your-account-and-data
 
 idem_dir $SRC_DIR
 pushd $SRC_DIR
+    idem_git _
+    idem_git loveworks
     idem_git onboarding
-    idem_git aws
 popd src
 
 # xdg-open ... & # TODO - Knowledge Management
