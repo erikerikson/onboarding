@@ -7,7 +7,9 @@ Thank you for your attention, please help improve this, and enjoy!
 First, to set up your machine's identity, run the following in your terminal:
 
 ```
-wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/0.ssh.sh | bash
+wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/0.ssh.sh > 0.ssh.sh
+chmod 700 0.ssh.sh
+./0.ssh.sh
 ```
 
 This will open a browser window on GitHub that will allow you to add the public key that was generated and written to your console.  This will set you up for using SSH to securely contribute code (Thank you!) and before that in pulling down the relevant code.
@@ -15,7 +17,11 @@ This will open a browser window on GitHub that will allow you to add the public 
 After you've added your new key, go ahead and run the following:
 
 ```
-wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/1.setup.sh | bash
+wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/1.setup.sh > 1.setup.sh
+wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/default.zshrc > default.zshrc
+chmod 700 1.setup.sh
+./1.setup.sh
 ```
+
 
 That should give you a baseline setup with which to start coding.  Well... It is, of course, a little more complicated than that...  We need to add you into the systems first.  For now, just ask Erik for help.
