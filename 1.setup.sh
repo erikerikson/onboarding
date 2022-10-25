@@ -68,13 +68,13 @@ function init_aws () {
   unzip awscliv2.zip
   sudo ./aws/install
   echo "This script will start the SSO flow for AWS, opening a browser."
-  echo "Please select your default role for the `sand` account."
+  echo "Please select your default role for the 'sand' account."
   aws configure sso --profile sand
 }
 idem_cmd aws
 
 function init_nvm() {
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh || bash
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -105,7 +105,7 @@ pushd $SRC_DIR
     idem_git _
     idem_git loveworks
     idem_git onboarding
-popd src
+popd
 
 # xdg-open ... & # TODO - Knowledge Management
 # xdg-open ... & # TODO - Project Management
