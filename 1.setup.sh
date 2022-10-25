@@ -48,7 +48,7 @@ sudo apt update
 function init_zsh() {
     sudo apt install zsh
     chsh -s $(which zsh)
-    cp ./default.zshrc ~/.zshrc
+    mv ./default.zshrc ~/.zshrc
     printf '%s\n' "" "NAME='$NAME'" "EMAIL=$EMAIL" >> ~/.zshrc
     printf '%s\n' "" "PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
 }
@@ -65,7 +65,8 @@ idem "command -v curl" "sudo apt install curl"
 
 function init_aws () {
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-  unzip awscliv2.zip
+  unzip ./awscliv2.zip
+  rm ./awscliv2.zip
   sudo ./aws/install
   echo "This script will start the SSO flow for AWS, opening a browser."
   echo "Please select your default role for the 'sand' account."
@@ -92,6 +93,7 @@ idem "command -v chromium" "sudo apt-get install chromium-browser"
 function init_chrome() {
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   sudo apt install ./google-chrome-stable_current_amd64.deb
+  rm ./google-chrome-stable_current_amd64.deb
 }
 idem_cmd chrome
 
