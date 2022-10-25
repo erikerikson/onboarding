@@ -48,7 +48,7 @@ sudo apt update
 function init_zsh() {
     sudo apt install zsh
     chsh -s $(which zsh)
-    mv ./default.zshrc ~/.zshrc
+    cp ./default.zshrc ~/.zshrc
     printf '%s\n' "" "NAME='$NAME'" "EMAIL=$EMAIL" >> ~/.zshrc
     printf '%s\n' "" "PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
 }
@@ -64,10 +64,13 @@ idem_cmd git
 idem "command -v curl" "sudo apt install curl"
 
 function init_aws () {
+  mkdir ~/awstmp
+  pushd ~/awstmp
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
   unzip ./awscliv2.zip
-  rm ./awscliv2.zip
   sudo ./aws/install
+  popd
+  rm -rf ~/awstmp
   echo "This script will start the SSO flow for AWS, opening a browser."
   echo "Please select your default role for the 'sand' account."
   aws configure sso --profile sand
