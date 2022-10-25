@@ -10,6 +10,7 @@ First, to set up your machine's identity, run the following in your terminal:
 wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/0.ssh.sh > 0.ssh.sh
 chmod 700 0.ssh.sh
 ./0.ssh.sh
+rm 0.ssh.sh
 ```
 
 This will open a browser window on GitHub that will allow you to add the public key that was generated and written to your console.  This will set you up for using SSH to securely contribute code (Thank you!) and before that in pulling down the relevant code.
@@ -21,6 +22,8 @@ wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/1.setup.sh
 wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/default.zshrc > default.zshrc
 chmod 700 1.setup.sh
 ./1.setup.sh
+rm 1.setup.sh
+rm default.zshrc
 ```
 
 
