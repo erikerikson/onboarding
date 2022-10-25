@@ -8,11 +8,11 @@
 set -euo pipefail
 
 # Default Variable Values and Reporting
-if [ -z ${SRC_DIR+x} ]; then
-    SRC_DIR=/src
-fi
 if [ -z ${SRC_ORG+x} ]; then
     SRC_ORG=loveworks
+fi
+if [ -z ${SRC_DIR+x} ]; then
+    SRC_DIR=/src/$SRC_ORG
 fi
 if [ -z ${PROMPT+x} ]; then
     PROMPT='%(?.%F{green}√.%F{red}%?)%f %B%F{240}%1~%f%b | '
