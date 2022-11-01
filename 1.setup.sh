@@ -87,6 +87,8 @@ idem "command -v serverless" "npm i -g serverless"
 
 idem "command -v code" "sudo snap install --classic code"
 
+idem "command -v convert" "sudo apt install imagemagick"
+
 idem "command -v chromium" "sudo apt-get install chromium-browser"
 
 function init_chrome() {
