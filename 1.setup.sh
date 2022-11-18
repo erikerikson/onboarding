@@ -9,16 +9,16 @@ set -euo pipefail
 
 # Default Variable Values and Reporting
 if [ -z ${SRC_ORG+x} ]; then
-    SRC_ORG=loveworks
+  SRC_ORG=loveworks
 fi
 if [ -z ${SRC_DIR+x} ]; then
-    SRC_DIR=/src/$SRC_ORG
+  SRC_DIR=/src/$SRC_ORG
 fi
 if [ -z ${PROMPT+x} ]; then
-    PROMPT='%(?.%F{green}√.%F{red}%?)%f %B%F{240}%1~%f%b | '
+  PROMPT='%(?.%F{green}√.%F{red}%?)%f %B%F{240}%1~%f%b | '
 fi
 if [ -z ${RPROMPT+x} ]; then
-    RPROMPT='%*'
+  RPROMPT='%*'
 fi
 echo Running with...
 echo \$NAME=$NAME
@@ -31,12 +31,12 @@ echo \$RPROMPT=$RPROMPT
 #####################
 ## Utility Functions
 function idem() { # $1 must be side effect free && $2 must be a command (perhaps complex)
-    ($1 &> /dev/null) || ($2)
+  ($1 &> /dev/null) || ($2)
 }
 function idem_cmd() { idem "command -v $1" "init_$1"; }
 function init_dir() {
-    sudo -s mkdir $1;
-    sudo -s chown \$SUDO_UID:\$SUDO_GID $1;
+  sudo -s mkdir $1;
+  sudo -s chown \$SUDO_UID:\$SUDO_GID $1;
 }
 function idem_dir() { idem "ls $1" "init_dir $1"; }
 function idem_git() { idem "ls $1" "git clone git@github.com:$SRC_ORG/$1.git"; }
@@ -46,18 +46,18 @@ function idem_git() { idem "ls $1" "git clone git@github.com:$SRC_ORG/$1.git"; }
 sudo apt update
 
 function init_zsh() {
-    sudo apt install zsh
-    chsh -s $(which zsh)
-    cp ./default.zshrc ~/.zshrc
-    printf '%s\n' "" "NAME='$NAME'" "EMAIL=$EMAIL" >> ~/.zshrc
-    printf '%s\n' "" "PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
+  sudo apt install zsh
+  chsh -s $(which zsh)
+  cp ./default.zshrc ~/.zshrc
+  printf '%s\n' "" "NAME='$NAME'" "EMAIL=$EMAIL" >> ~/.zshrc
+  printf '%s\n' "" "PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
 }
 idem_cmd zsh
 
 function init_git() {
-    sudo apt-get install git-all
-    git config --global user.name "$NAME"
-    git config --global user.email "$EMAIL"
+  sudo apt-get install git-all
+  git config --global user.name "$NAME"
+  git config --global user.email "$EMAIL"
 }
 idem_cmd git
 
@@ -78,12 +78,12 @@ function init_aws () {
 idem_cmd aws
 
 function init_nvm() {
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    nvm install 18
-    nvm use 18
+  wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  nvm install 18
+  nvm use 18
 }
 idem_cmd nvm
 
@@ -108,10 +108,12 @@ echo "You are about to be challenged for GitHub's fingerprint.  Please copy the 
 xdg-open https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints &
 
 idem_dir $SRC_DIR
+idem_dir $SRC_DIR/.vscode
+idem "ls $SRC_DIR/.vscode/launch.json" "cp ./launch.json $SRC_DIR/.vscode/"
 pushd $SRC_DIR
-    idem_git _
-    idem_git loveworks
-    idem_git onboarding
+  idem_git _
+  idem_git loveworks
+  idem_git onboarding
 popd
 
 # xdg-open ... & # TODO - Knowledge Management

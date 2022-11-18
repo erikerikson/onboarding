@@ -1,0 +1,35 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug API",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}/loveworks/src/api",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "offline"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug Jest Tests",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "--experimental-vm-modules",
+        "--inspect-brk",
+        "${workspaceRoot}/loveworks/node_modules/.bin/jest",
+        "--runInBand"
+      ],
+      "env": {
+        "AccessControlAllowOrigin": "https://www.loveworks.io"
+      },
+      "cwd": "${workspaceRoot}/loveworks",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
