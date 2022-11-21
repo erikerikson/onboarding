@@ -84,6 +84,7 @@ function init_nvm() {
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
   nvm install 18
   nvm use 18
+  npm config set script-shell $(which zsh)
 }
 idem_cmd nvm
 
