@@ -27,6 +27,7 @@ echo \$SRC_DIR=$SRC_DIR
 echo \$SRC_ORG=$SRC_ORG
 echo \$PROMPT=$PROMPT
 echo \$RPROMPT=$RPROMPT
+echo \$SSO_START_URL=$SSO_START_URL
 
 #####################
 ## Utility Functions
@@ -64,6 +65,7 @@ idem_cmd git
 idem "command -v curl" "sudo apt install curl"
 
 function init_aws () {
+  # install CLI
   mkdir ~/awstmp
   pushd ~/awstmp
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -71,9 +73,19 @@ function init_aws () {
   sudo ./aws/install
   popd
   rm -rf ~/awstmp
+  # defaults for CLI auth
+  mkdir ~/.aws
+  echo "[profile default]" > ~/.aws/config
+  echo "sso_start_url = $SSO_START_URL" > ~/.aws/config
+  echo "sso_region = us-west-2" > ~/.aws/config
+  # trigger initial log in
   echo "This script will start the SSO flow for AWS, opening a browser."
-  echo "Please select your default role for the 'sand' account."
-  aws configure sso --profile sand
+  echo "Please..."
+  echo "1. accept defaults as given"
+  echo "2. select the 'sand' account"
+  echo "3. choose your default role for the 'sand' account"
+  echo "4. call this profile 'sand' so that documentation and scripts can use it"
+  aws configure sso
 }
 idem_cmd aws
 
