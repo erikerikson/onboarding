@@ -11,6 +11,23 @@
       "cwd": "${workspaceRoot}/loveworks/src/api",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run-script", "offline"],
+      "env": {
+        "AccessControlAllowOrigin": "*",
+        "STAGE": "sand"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug API Deploy",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}/loveworks/src/api",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "deploy"],
+      "env": {
+        "STAGE": "sand"
+      },
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
     },
