@@ -37,5 +37,4 @@ rm default.zshrc
 rm launch.json
 ```
 
-
-That should give you a baseline setup with which to start coding.  Well... It is, of course, a little more complicated than that...  We need to add you into the systems first.  For now, just ask Erik for help.
+That should give you a baseline setup with which to start coding (we assume `code /src/loveworks` as the standard setup).  Well... It is, of course, a little more complicated than that...  We need to add you into the systems first.  For now, just ask Erik for help.
