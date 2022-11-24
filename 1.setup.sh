@@ -86,6 +86,9 @@ function init_aws () {
   echo "3. choose your default role for the 'sand' account"
   echo "4. call this profile 'sand' so that documentation and scripts can use it"
   aws configure sso
+  SAND_ACCOUNT_ID = $(aws sts get-caller-identity --query Account --output text --profile sand)
+  aws configure set role_arn arn:aws:iam::$SAND_ACCOUNT_ID:role/cicd --profile sand-cicd
+  aws configure set source_profile sand --profile sand-cicd
 }
 idem_cmd aws
 
