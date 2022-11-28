@@ -5,8 +5,6 @@
 ##
 ## Running Ubuntu 22.04 LTS (or later?)
 
-set -euo pipefail
-
 # Default Variable Values and Reporting
 if [ -z ${SRC_ORG+x} ]; then
   SRC_ORG=loveworks
@@ -20,6 +18,9 @@ fi
 if [ -z ${RPROMPT+x} ]; then
   RPROMPT='%*'
 fi
+
+set -euo pipefail
+
 echo Running with...
 echo \$NAME=$NAME
 echo \$EMAIL=$EMAIL
@@ -52,6 +53,7 @@ function init_zsh() {
   cp ./default.zshrc ~/.zshrc
   printf '%s\n' "" "NAME='$NAME'" "EMAIL=$EMAIL" >> ~/.zshrc
   printf '%s\n' "" "PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
+  printf '%s\n' "" "AWS_SDK_LOAD_CONFIG=1" >> ~/.zshrc
 }
 idem_cmd zsh
 
@@ -75,9 +77,9 @@ function init_aws () {
   rm -rf ~/awstmp
   # defaults for CLI auth
   mkdir ~/.aws
-  echo "[profile default]" > ~/.aws/config
-  echo "sso_start_url = $SSO_START_URL" > ~/.aws/config
-  echo "sso_region = us-west-2" > ~/.aws/config
+  echo "[profile default]" >> ~/.aws/config
+  echo "sso_start_url = $SSO_START_URL" >> ~/.aws/config
+  echo "sso_region = us-west-2" >> ~/.aws/config
   # trigger initial log in
   echo "This script will start the SSO flow for AWS, opening a browser."
   echo "Please..."
