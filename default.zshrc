@@ -13,4 +13,5 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # Common environment variables
+AWS_SDK_LOAD_CONFIG=1
 AWS_DEFAULT_PROFILE=sand

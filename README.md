@@ -1,10 +1,18 @@
 # Welcome!
 
-This repository is intended to help get you set up for the first time or reinitialize a clean machine.
+This repository is intended to help get you set up for the first time or reinitialize a clean machine.  Of course you are welcomed to preview the commands that you are asked to run but the pooint of this repo is to give everyone a consistent agreement on shared setup and configuration so that our shared scripts run properly.
 
 Thank you for your attention, please help improve this, and enjoy!
 
-First, to set up your machine's identity, run the following in your terminal:
+First you'll need to set the following variables.  Ask for SSO_START_URL if you haven't already been given it.
+
+```
+export NAME="<First Last>"
+export EMAIL=<you@loveworks.io>
+export SSO_START_URL=<url>
+```
+
+Next, to set up your machine's identity, run the following in your terminal:
 
 ```
 wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/0.ssh.sh > 0.ssh.sh
@@ -29,5 +37,4 @@ rm default.zshrc
 rm launch.json
 ```
 
-
-That should give you a baseline setup with which to start coding.  Well... It is, of course, a little more complicated than that...  We need to add you into the systems first.  For now, just ask Erik for help.
+That should give you a baseline setup with which to start coding (we assume `code /src/loveworks` as the standard setup).  Well... It is, of course, a little more complicated than that...  We need to add you into the systems first.  For now, just ask Erik for help.
