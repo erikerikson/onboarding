@@ -53,7 +53,6 @@ function init_zsh() {
   cp ./default.zshrc ~/.zshrc
   printf '%s\n' "" "NAME='$NAME'" "EMAIL=$EMAIL" >> ~/.zshrc
   printf '%s\n' "" "PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
-  printf '%s\n' "" "AWS_SDK_LOAD_CONFIG=1" >> ~/.zshrc
 }
 idem_cmd zsh
 
