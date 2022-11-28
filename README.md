@@ -20,10 +20,13 @@ After you've added your new key, go ahead and run the following:
 ```
 wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/1.setup.sh > 1.setup.sh
 wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/default.zshrc > default.zshrc
+wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/launch.json > launch.json
+
 chmod 700 1.setup.sh
 ./1.setup.sh
 rm 1.setup.sh
 rm default.zshrc
+rm launch.json
 ```
 
 
