@@ -29,12 +29,14 @@ After you've added your new key, go ahead and run the following:
 wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/1.setup.sh > 1.setup.sh
 wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/default.zshrc > default.zshrc
 wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/launch.json > launch.json
+wget -qO- https://raw.githubusercontent.com/loveworks/onboarding/main/settings.json > settings.json
 
 chmod 700 1.setup.sh
 ./1.setup.sh
 rm 1.setup.sh
 rm default.zshrc
 rm launch.json
+rm settings.json
 ```
 
 That should give you a baseline setup with which to start coding (we assume `code /src/loveworks` as the standard setup).  Well... It is, of course, a little more complicated than that...  We need to add you into the systems first.  For now, just ask Erik for help.
