@@ -127,6 +127,7 @@ xdg-open https://docs.github.com/en/authentication/keeping-your-account-and-data
 idem_dir $SRC_DIR
 idem_dir $SRC_DIR/.vscode
 idem "ls $SRC_DIR/.vscode/launch.json" "cp ./launch.json $SRC_DIR/.vscode/"
+idem "ls $SRC_DIR/.vscode/settings.json" "cp ./settings.json $SRC_DIR/.vscode/"
 pushd $SRC_DIR
   idem_git _
   idem_git loveworks
