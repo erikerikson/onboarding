@@ -13,5 +13,8 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # Common environment variables
-AWS_SDK_LOAD_CONFIG=1
-AWS_DEFAULT_PROFILE=sand
+export AWS_SDK_LOAD_CONFIG=1
+export AWS_DEFAULT_PROFILE=sand
+export AWS_DEFAULT_REGION=us-west-2
+export AWS_PROFILE=$AWS_DEFAULT_PROFILE
+export AWS_REGION=$AWS_DEFAULT_REGION

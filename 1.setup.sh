@@ -51,8 +51,8 @@ function init_zsh() {
   sudo apt install zsh
   chsh -s $(which zsh)
   cp ./default.zshrc ~/.zshrc
-  printf '%s\n' "" "NAME='$NAME'" "EMAIL=$EMAIL" >> ~/.zshrc
-  printf '%s\n' "" "PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
+  printf '%s\n' "" "export NAME='$NAME'" "EMAIL=$EMAIL" >> ~/.zshrc
+  printf '%s\n' "" "export PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
 }
 idem_cmd zsh
 
