@@ -87,7 +87,7 @@ function init_aws () {
   echo "3. choose your default role for the 'sand' account"
   echo "4. call this profile 'sand' so that documentation and scripts can use it"
   aws configure sso
-  SAND_ACCOUNT_ID = $(aws sts get-caller-identity --query Account --output text --profile sand)
+  SAND_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text --profile sand)
   aws configure set role_arn arn:aws:iam::$SAND_ACCOUNT_ID:role/cicd --profile sand-cicd
   aws configure set source_profile sand --profile sand-cicd
 }
@@ -121,8 +121,8 @@ idem_cmd chrome
 
 ################
 ## Get Source
-echo "You are about to be challenged for GitHub's fingerprint.  Please copy the Ed25519 key from the page about to openned in your browser"
-xdg-open https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints &
+echo "You are about to be challenged for GitHub's fingerprint.  Please copy the Ed25519 key from the following page"
+echo https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints
 
 idem_dir $SRC_DIR
 idem_dir $SRC_DIR/.vscode
@@ -134,7 +134,7 @@ pushd $SRC_DIR
   idem_git onboarding
 popd
 
-# xdg-open ... & # TODO - Knowledge Management
-# xdg-open ... & # TODO - Project Management
-xdg-open https://github.com/$SRC_ORG & # GitHub Org
-# xdg-open ... & # TODO - AWS Console
+# echo Wiki ... & # TODO - Knowledge Management
+# echo Backlog ... & # TODO - Project Management
+echo GitHub https://github.com/$SRC_ORG & # GitHub Org
+xdg-open $SSO_START_URL # AWS Console
