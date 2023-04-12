@@ -37,7 +37,7 @@ function idem() { # $1 must be side effect free && $2 must be a command (perhaps
 }
 function idem_cmd() { idem "command -v $1" "init_$1"; }
 function init_dir() {
-  sudo -s mkdir $1;
+  sudo -s mkdir -p $1;
   sudo -s chown \$SUDO_UID:\$SUDO_GID $1;
 }
 function idem_dir() { idem "ls $1" "init_dir $1"; }
@@ -124,7 +124,6 @@ idem_cmd chrome
 echo "You are about to be challenged for GitHub's fingerprint.  Please copy the Ed25519 key from the following page"
 echo https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints
 
-idem_dir $SRC_DIR
 idem_dir $SRC_DIR/.vscode
 idem "ls $SRC_DIR/.vscode/launch.json" "cp ./launch.json $SRC_DIR/.vscode/"
 idem "ls $SRC_DIR/.vscode/settings.json" "cp ./settings.json $SRC_DIR/.vscode/"
