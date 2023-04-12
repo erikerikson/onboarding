@@ -40,7 +40,7 @@ function init_dir() {
   sudo -s mkdir -p $1;
   sudo -s chown \$SUDO_UID:\$SUDO_GID $1;
 }
-function idem_dir() { idem "ls $1" "init_dir $1"; }
+function idem_dir() { idem "ls $1" "init_dir ${1://-/_/}"; }
 function idem_git() { idem "ls $1" "git clone git@github.com:$SRC_ORG/$1.git"; }
 
 #########################################
@@ -112,12 +112,12 @@ idem "command -v convert" "sudo apt install imagemagick"
 
 idem "command -v chromium" "sudo apt-get install chromium-browser"
 
-function init_chrome() {
+function init_google_chrome() {
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   sudo apt install ./google-chrome-stable_current_amd64.deb
   rm ./google-chrome-stable_current_amd64.deb
 }
-idem_cmd chrome
+idem_cmd google-chrome
 
 ################
 ## Get Source
