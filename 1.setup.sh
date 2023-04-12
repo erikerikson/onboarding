@@ -124,6 +124,7 @@ idem_cmd chrome
 echo "You are about to be challenged for GitHub's fingerprint.  Please copy the Ed25519 key from the following page"
 echo https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints
 
+idem_dir $SRC_DIR
 idem_dir $SRC_DIR/.vscode
 idem "ls $SRC_DIR/.vscode/launch.json" "cp ./launch.json $SRC_DIR/.vscode/"
 idem "ls $SRC_DIR/.vscode/settings.json" "cp ./settings.json $SRC_DIR/.vscode/"
