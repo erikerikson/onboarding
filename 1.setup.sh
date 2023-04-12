@@ -40,7 +40,7 @@ function init_dir() {
   sudo -s mkdir -p $1;
   sudo -s chown \$SUDO_UID:\$SUDO_GID $1;
 }
-function idem_dir() { idem "ls $1" "init_dir ${1://-/_/}"; }
+function idem_dir() { idem "ls $1" "init_dir $(echo $1 | sed 's/-/_/g')"; }
 function idem_git() { idem "ls $1" "git clone git@github.com:$SRC_ORG/$1.git"; }
 
 #########################################
