@@ -37,10 +37,10 @@ function idem() { # $1 must be side effect free && $2 must be a command (perhaps
 }
 function idem_cmd() { idem "command -v $1" "init_$1"; }
 function init_dir() {
-  sudo -s mkdir $1;
+  sudo -s mkdir -p $1;
   sudo -s chown \$SUDO_UID:\$SUDO_GID $1;
 }
-function idem_dir() { idem "ls $1" "init_dir $1"; }
+function idem_dir() { idem "ls $1" "init_dir $(echo $1 | sed 's/-/_/g')"; }
 function idem_git() { idem "ls $1" "git clone git@github.com:$SRC_ORG/$1.git"; }
 
 #########################################
@@ -51,8 +51,8 @@ function init_zsh() {
   sudo apt install zsh
   chsh -s $(which zsh)
   cp ./default.zshrc ~/.zshrc
-  printf '%s\n' "" "export NAME='$NAME'" "EMAIL=$EMAIL" >> ~/.zshrc
-  printf '%s\n' "" "export PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
+  printf '%s\n' "" "export NAME='$NAME'" "export EMAIL=$EMAIL" >> ~/.zshrc
+  printf '%s\n' "" "PROMPT='$PROMPT'" "RPROMPT=$RPROMPT" >> ~/.zshrc
 }
 idem_cmd zsh
 
@@ -87,7 +87,7 @@ function init_aws () {
   echo "3. choose your default role for the 'sand' account"
   echo "4. call this profile 'sand' so that documentation and scripts can use it"
   aws configure sso
-  SAND_ACCOUNT_ID = $(aws sts get-caller-identity --query Account --output text --profile sand)
+  SAND_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text --profile sand)
   aws configure set role_arn arn:aws:iam::$SAND_ACCOUNT_ID:role/cicd --profile sand-cicd
   aws configure set source_profile sand --profile sand-cicd
 }
@@ -112,17 +112,17 @@ idem "command -v convert" "sudo apt install imagemagick"
 
 idem "command -v chromium" "sudo apt-get install chromium-browser"
 
-function init_chrome() {
+function init_google_chrome() {
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   sudo apt install ./google-chrome-stable_current_amd64.deb
   rm ./google-chrome-stable_current_amd64.deb
 }
-idem_cmd chrome
+idem_cmd google-chrome
 
 ################
 ## Get Source
-echo "You are about to be challenged for GitHub's fingerprint.  Please copy the Ed25519 key from the page about to openned in your browser"
-xdg-open https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints &
+echo "You are about to be challenged for GitHub's fingerprint.  Please copy the Ed25519 key from the following page"
+echo https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints
 
 idem_dir $SRC_DIR
 idem_dir $SRC_DIR/.vscode
@@ -134,7 +134,7 @@ pushd $SRC_DIR
   idem_git onboarding
 popd
 
-# xdg-open ... & # TODO - Knowledge Management
-# xdg-open ... & # TODO - Project Management
-xdg-open https://github.com/$SRC_ORG & # GitHub Org
-# xdg-open ... & # TODO - AWS Console
+# echo Wiki ... & # TODO - Knowledge Management
+# echo Backlog ... & # TODO - Project Management
+echo GitHub https://github.com/$SRC_ORG & # GitHub Org
+xdg-open $SSO_START_URL # AWS Console
