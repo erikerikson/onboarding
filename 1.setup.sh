@@ -35,7 +35,7 @@ echo \$SSO_START_URL=$SSO_START_URL
 function idem() { # $1 must be side effect free && $2 must be a command (perhaps complex)
   ($1 &> /dev/null) || ($2)
 }
-function idem_cmd() { idem "command -v $1" "init_$1"; }
+function idem_cmd() { idem "command -v $1" "init_$(echo $1 | sed 's/-/_/g')"; }
 function init_dir() {
   sudo -s mkdir -p $1;
   sudo -s chown \$SUDO_UID:\$SUDO_GID $1;
