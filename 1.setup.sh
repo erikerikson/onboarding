@@ -35,7 +35,7 @@ echo \$SSO_START_URL=$SSO_START_URL
 function idem() { # $1 must be side effect free && $2 must be a command (perhaps complex)
   ($1 &> /dev/null) || ($2)
 }
-function idem_cmd() { idem "command -v $1" "init_$1"; }
+function idem_cmd() { idem "command -v $1" "init_$(echo $1 | sed 's/-/_/g')"; }
 function init_dir() {
   sudo -s mkdir -p $1;
   sudo -s chown \$SUDO_UID:\$SUDO_GID $1;
@@ -82,10 +82,10 @@ function init_aws () {
   # trigger initial log in
   echo "This script will start the SSO flow for AWS, opening a browser."
   echo "Please..."
-  echo "1. accept defaults as given"
+  echo "1. accept defaults as given (except for step 4, after you're back to the terminal)"
   echo "2. select the 'sand' account"
   echo "3. choose your default role for the 'sand' account"
-  echo "4. call this profile 'sand' so that documentation and scripts can use it"
+  echo "4. set the CLI profile name to 'sand' so that documentation and scripts can use it"
   aws configure sso
   SAND_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text --profile sand)
   aws configure set role_arn arn:aws:iam::$SAND_ACCOUNT_ID:role/cicd --profile sand-cicd
@@ -94,7 +94,7 @@ function init_aws () {
 idem_cmd aws
 
 function init_nvm() {
-  wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -103,8 +103,6 @@ function init_nvm() {
   npm config set script-shell $(which zsh)
 }
 idem_cmd nvm
-
-idem "command -v serverless" "npm i -g serverless"
 
 idem "command -v code" "sudo snap install --classic code"
 

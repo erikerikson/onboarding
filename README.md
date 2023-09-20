@@ -8,7 +8,7 @@ First you'll need to set the following variables.  Ask for SSO_START_URL if you 
 
 ```
 export NAME="<First Last>"
-export EMAIL=<you@loveworks.io>
+export EMAIL=<you@psyome.com>
 export SSO_START_URL=<url>
 ```
 
