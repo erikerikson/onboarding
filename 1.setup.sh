@@ -106,7 +106,7 @@ idem_cmd nvm
 
 function init_sdk() { # in fact, the JDK (sdk is a version manager for Java, much like nvm)
   curl -s "https://get.sdkman.io" | bash
-  source "/home/erik/.sdkman/bin/sdkman-init.sh"
+  source ~/.sdkman/bin/sdkman-init.sh
   sdk install java 21.0.1-tem
 }
 idem_cmd sdk
