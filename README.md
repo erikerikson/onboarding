@@ -1,6 +1,6 @@
 # Welcome!
 
-This repository is intended to help get you set up for the first time or reinitialize a clean machine.  Of course you are welcomed to preview the commands that you are asked to run but the pooint of this repo is to give everyone a consistent agreement on shared setup and configuration so that our shared scripts run properly.
+This repository is intended to help get you set up for the first time or reinitialize a clean machine.  This is intended to set up a new Ubuntu machine.  Of course you are welcomed to preview the commands that you are asked to run but the point of this repo is to give everyone a consistent agreement on shared setup and configuration so that our shared scripts run properly.
 
 Thank you for your attention, please help improve this, and enjoy!
 
