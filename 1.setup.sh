@@ -104,6 +104,13 @@ function init_nvm() {
 }
 idem_cmd nvm
 
+function init_sdk() { # in fact, the JDK (sdk is a version manager for Java, much like nvm)
+  curl -s "https://get.sdkman.io" | bash
+  source ~/.sdkman/bin/sdkman-init.sh
+  sdk install java 21.0.1-tem
+}
+idem_cmd sdk
+
 idem "command -v code" "sudo snap install --classic code"
 
 idem "command -v convert" "sudo apt install imagemagick"
