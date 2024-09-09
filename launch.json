@@ -10,7 +10,7 @@
       "request": "launch",
       "cwd": "${workspaceRoot}/loveworks/src/api",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "offline"],
+      "runtimeArgs": ["run-script", "TODO"],
       "env": {
         "AccessControlAllowOrigin": "*",
         "STAGE": "sand"
@@ -26,7 +26,8 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run-script", "deploy"],
       "env": {
-        "STAGE": "sand"
+        "AWS_PROFILE": "sand",
+        "": "www.sand.loveworks.io"
       },
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
