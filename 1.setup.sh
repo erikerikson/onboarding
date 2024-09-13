@@ -98,15 +98,18 @@ function init_nvm() {
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-  nvm install 16
-  nvm use 16
+  nvm install --lts
+  nvm use --lts
+  nvm alias default node
   npm config set script-shell $(which zsh)
 }
 idem_cmd nvm
 
 function init_sdk() { # in fact, the JDK (sdk is a version manager for Java, much like nvm)
   curl -s "https://get.sdkman.io" | bash
+  set +euo pipefail # disable for next script
   source ~/.sdkman/bin/sdkman-init.sh
+  set -euo pipefail # reenable
   sdk install java 21.0.1-tem # keep this in sync with cicd.yml
 }
 idem_cmd sdk
