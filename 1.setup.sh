@@ -105,6 +105,8 @@ function init_nvm() {
 }
 idem_cmd nvm
 
+idem "command -v pnpm" "npm install -g pnpm"
+
 function init_sdk() { # in fact, the JDK (sdk is a version manager for Java, much like nvm)
   curl -s "https://get.sdkman.io" | bash
   set +euo pipefail # disable for next script
