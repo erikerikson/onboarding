@@ -39,4 +39,4 @@ rm launch.json
 rm settings.json
 ```
 
-That should give you a baseline setup with which to start coding (we assume `code /src/loveworks` as the standard setup).  Well... It is, of course, a little more complicated than that...  We need to add you into the systems first.  For now, just ask Erik for help.
+That should give you a baseline setup with which to start coding (we assume `code /src/loveworks` as the standard setup).  Well... It is, of course, a little more complicated than that...  We need to add you into the systems first.  For now, just ask Erik for help.  Make sure he sets you up with vars.sh while he's at it.
